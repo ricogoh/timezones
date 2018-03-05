@@ -1,0 +1,14 @@
+{
+    "name": "ricogoh/timezones",
+    "description": "Example Create Laravel 5 Package",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rico Goh",
+            "email": "ricogoh@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
