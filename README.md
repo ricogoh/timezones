@@ -1,9 +1,9 @@
 # timezones
 Example Create Laravel 5 Package
 
-#Create Laravel Package
+# Create Laravel Package
 
-###Package folder and name
+### Package folder and name
 create a package folder: /packages/[creator]/[package_name]. Then inside of it we need to create another folder called /src.
 
 ```
@@ -29,7 +29,7 @@ Loading package via main composer.json and PSR-4
 
 composer dump-autoload
             
-###Creating a Service Provider
+### Creating a Service Provider
 php artisan make:provider TimezonesServiceProvider
 It will generate a file called TimezonesServiceProvider.php in folder app/Providers – then we should move that file to our folder /packages/ricogoh/timezones/src. After that don’t forget to change the namespace of the Provider class – it should be the same as we specified in main composer.json file – in our case, Ricogoh\Timezones:
 
@@ -40,7 +40,7 @@ config/app.php:
         Ricogoh\Timezones\TimezonesServiceProvider::class,
 ```
 
-###Create a Controller
+### Create a Controller
 
 packages\ricogoh\timezones\src\TimezonesController.php
 
@@ -62,7 +62,7 @@ class TimezonesController extends Controller
 }
 ```
                 
-###Create our Routes.php file
+### Create our Routes.php file
 packages\ricogoh\timezones\src\routes.php:
 
 ```php
@@ -83,10 +83,10 @@ class TimezonesServiceProvider extends ServiceProvider
 }
 ```
             
-###That’s it – load URL in the browser!
+### That’s it – load URL in the browser!
 
 
-###What about the Views?
+### What about the Views?
 
 src/views/time.blade.php:
 
@@ -127,7 +127,7 @@ class TimezonesController extends Controller
 }
 ```
             
-###Publishing the Views
+### Publishing the Views
 And the last step – what if we want user of our package to customize that view himself? That’s a pretty common scenario – we provide a basic template, but then user wants it to look as his app, not ours.
 
 But they wouldn’t go to our package folder and edit views directly – that would ruin all future updates process. That means we should copy our views into Laravel folder resources/views. To do that, we add this line to Service Provider’s boot() method:
