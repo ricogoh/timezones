@@ -26,8 +26,9 @@ Loading package via main composer.json and PSR-4
     }
 },
 ```
-
+```php
 composer dump-autoload
+```
             
 ### Creating a Service Provider
 php artisan make:provider TimezonesServiceProvider
