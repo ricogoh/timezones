@@ -22,7 +22,7 @@ Loading package via main composer.json and PSR-4
     ],
     "psr-4": {
         "App\\": "app/",
-        "Laraveldaily\\Timezones\\": "packages/laraveldaily/timezones/src"
+        "Ricogoh\\Timezones\\": "packages/ricogoh/timezones/src"
     }
 },
 ```
@@ -31,27 +31,21 @@ composer dump-autoload
             
 ###Creating a Service Provider
 php artisan make:provider TimezonesServiceProvider
-It will generate a file called TimezonesServiceProvider.php in folder app/Providers – then we should move that file to our folder /packages/laraveldaily/timezones/src. After that don’t forget to change the namespace of the Provider class – it should be the same as we specified in main composer.json file – in our case, Laraveldaily\Timezones:
+It will generate a file called TimezonesServiceProvider.php in folder app/Providers – then we should move that file to our folder /packages/ricogoh/timezones/src. After that don’t forget to change the namespace of the Provider class – it should be the same as we specified in main composer.json file – in our case, Ricogoh\Timezones:
 
 config/app.php:
 
 ```php
 'providers' => [
-
-        /*
-         * Laravel Framework Service Providers...
-         */
-        Illuminate\Foundation\Providers\ArtisanServiceProvider::class,
-        // ... other providers
-        Illuminate\View\ViewServiceProvider::class,
-        Laraveldaily\Timezones\TimezonesServiceProvider::class,
+        Ricogoh\Timezones\TimezonesServiceProvider::class,
 ```
 
 ###Create a Controller
 
+packages\ricogoh\timezones\src\TimezonesController.php
+
 ```php
-packages\laraveldaily\timezones\src\TimezonesController.php
-namespace Laraveldaily\Timezones;
+namespace Ricogoh\Timezones;
 
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
@@ -69,11 +63,11 @@ class TimezonesController extends Controller
 ```
                 
 ###Create our Routes.php file
-packages\laraveldaily\timezones\src\routes.php:
+packages\ricogoh\timezones\src\routes.php:
 
 ```php
 Route::get('timezones/{timezone?}',
-    'laraveldaily\timezones\TimezonesController@index');
+    'ricogoh\timezones\TimezonesController@index');
 ```
 
 Now, how does Laravel know about this routes.php file and our Controller? This is where our Service Provider comes in: we add these lines to its method register():
@@ -84,7 +78,7 @@ class TimezonesServiceProvider extends ServiceProvider
     public function register()
     {
         include __DIR__.'/routes.php';
-        $this->app->make('Laraveldaily\Timezones\TimezonesController');
+        $this->app->make('Ricogoh\Timezones\TimezonesController');
     }
 }
 ```
@@ -93,6 +87,7 @@ class TimezonesServiceProvider extends ServiceProvider
 
 
 ###What about the Views?
+
 src/views/time.blade.php:
 
 ```html
@@ -139,7 +134,7 @@ But they wouldn’t go to our package folder and edit views directly – that wo
 
 ```php
 $this->publishes([
-    __DIR__.'/views' => base_path('resources/views/laraveldaily/timezones'),
+    __DIR__.'/views' => base_path('resources/views/ricogoh/timezones'),
 ]);
 ```
             
