@@ -4,7 +4,7 @@ namespace RicoGoh\Timezones;
 
 use Illuminate\Support\ServiceProvider;
 
-class TimezonesProvider extends ServiceProvider
+class TimezonesServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap services.
