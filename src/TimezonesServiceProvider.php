@@ -13,9 +13,12 @@ class TimezonesServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__.'/views', 'timezones');
 
+        // php artisan vendor:publish --provider="RicoGoh\Timezones\TimezonesServiceProvider"
+        // OR
+        // php artisan vendor:publish --tag="ricogoh.timezones"
         $this->publishes([
             __DIR__.'/views' => base_path('resources/views/ricogoh/timezones'),
-        ]);
+        ], 'ricogoh.timezones');
     }
 
     /**
