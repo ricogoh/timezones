@@ -17,5 +17,15 @@
         "psr-4": {
             "RicoGoh\\Timezones\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "RicoGoh\\Timezones\\TimezonesProvider"
+            ],
+            "aliases": {
+                "Timezones": "RicoGoh\\Timezones\\Facades\\Timezones"
+            }
+        }
     }
 }
