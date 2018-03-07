@@ -9,8 +9,8 @@ create a package folder: /packages/[creator]/[package_name]. Then inside of it w
 ```
 --app
 --packages
-----[CREATOR/VENDOR]
-------[PACKAGE_NAME]
+----[CREATOR/VENDOR] (ricogoh)
+------[PACKAGE_NAME] (timezones)
 --------src
             
 Composer.json file for the package
@@ -31,7 +31,9 @@ composer dump-autoload
 ```
             
 ### Creating a Service Provider
+```php
 php artisan make:provider TimezonesServiceProvider
+```
 It will generate a file called TimezonesServiceProvider.php in folder app/Providers – then we should move that file to our folder /packages/ricogoh/timezones/src. After that don’t forget to change the namespace of the Provider class – it should be the same as we specified in main composer.json file – in our case, Ricogoh\Timezones:
 
 config/app.php:
@@ -107,7 +109,7 @@ class TimezonesServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/views', 'timezones');
+        $this->loadViewsFrom(__DIR__.'/views', 'ricogoh/timezones');
     }
 ```
             
@@ -122,7 +124,7 @@ class TimezonesController extends Controller
         $current_time = ($timezone)
             ? Carbon::now(str_replace('-', '/', $timezone))
             : Carbon::now();
-        return view('timezones::time', compact('current_time'));
+        return view('ricogoh/timezones::time', compact('current_time'));
     }
 
 }
