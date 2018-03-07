@@ -27,15 +27,12 @@ class TimezonesController extends Controller
                 $location = [strtoupper($timezone)];
             }
         }
-
-        //return $current_time;
-        //echo $current_time->toDateTimeString();
-
-        return view('timezones::time', compact('current_time', 'location'));
+        
+        return view('ricogoh/timezones::time', compact('current_time', 'location'));
     }
 
     public function readme()
     {
-        return view('timezones::readme');
+        return view('ricogoh/timezones::readme');
     }
 }
